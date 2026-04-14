@@ -227,6 +227,7 @@ export default function ProfilePage() {
           </p>
 
           <button
+            type="button"
             onClick={() => setConfirmSignOut(true)}
             disabled={isLoggingOut}
             className="w-full h-12 bg-transparent border border-[#EF4444] text-[#EF4444] hover:bg-[#EF4444] hover:text-white rounded-lg font-semibold text-base transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"

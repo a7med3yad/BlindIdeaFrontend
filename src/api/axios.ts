@@ -62,6 +62,7 @@ api.interceptors.response.use(
       '/Auth/forgot-password',
       '/Auth/verify-reset',
       '/Auth/change-password',
+      '/Auth/change-forgotten-password',
       '/Auth/Verify-email',
     ];
     const requestUrl = (originalRequest?.url || '').toLowerCase();
@@ -89,7 +90,8 @@ api.interceptors.response.use(
       if (!refreshToken) {
         localStorage.removeItem('accessToken');
         localStorage.removeItem('refreshToken');
-        window.location.href = '/login';
+        localStorage.removeItem('activeTeamId');
+        window.dispatchEvent(new CustomEvent('auth:expired'));
         return Promise.reject(error);
       }
 
@@ -116,7 +118,8 @@ api.interceptors.response.use(
         processQueue(refreshError, null);
         localStorage.removeItem('accessToken');
         localStorage.removeItem('refreshToken');
-        window.location.href = '/login';
+        localStorage.removeItem('activeTeamId');
+        window.dispatchEvent(new CustomEvent('auth:expired'));
         return Promise.reject(refreshError);
       } finally {
         isRefreshing = false;

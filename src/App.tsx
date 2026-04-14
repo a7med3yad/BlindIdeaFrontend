@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from 'react-hot-toast';
 import { AnimatePresence } from 'framer-motion';
@@ -15,12 +15,15 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import VerifyEmailPage from './pages/VerifyEmailPage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
+import VerifyResetPage from './pages/VerifyResetPage';
+import ResetPasswordPage from './pages/ResetPasswordPage';
 import DashboardPage from './pages/DashboardPage';
 import IdeasPage from './pages/IdeasPage';
 import TeamPage from './pages/TeamPage';
 import ProfilePage from './pages/ProfilePage';
 import NotFoundPage from './pages/NotFoundPage';
 import ExternalCallbackPage from './pages/ExternalCallbackPage';
+import OAuthCallbackPage from './pages/OAuthCallbackPage';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -42,6 +45,18 @@ function FullPageSpinner() {
 }
 
 function AppRoutes() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleAuthExpired = () => {
+      useAuthStore.getState().logout();
+      navigate('/login', { replace: true });
+    };
+
+    window.addEventListener('auth:expired', handleAuthExpired);
+    return () => window.removeEventListener('auth:expired', handleAuthExpired);
+  }, [navigate]);
+
   return (
     <AnimatePresence mode="wait">
       <Routes>
@@ -51,7 +66,10 @@ function AppRoutes() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/verify-email" element={<VerifyEmailPage />} />
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+        <Route path="/verify-reset" element={<VerifyResetPage />} />
+        <Route path="/reset-password" element={<ResetPasswordPage />} />
         <Route path="/external-callback" element={<ExternalCallbackPage />} />
+        <Route path="/oauth-callback" element={<OAuthCallbackPage />} />
 
         {/* Protected routes */}
         <Route element={<ProtectedRoute />}>

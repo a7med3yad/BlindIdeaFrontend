@@ -36,6 +36,7 @@ export default function TeamSwitcher() {
     <div ref={ref} className="relative">
       {/* Trigger button */}
       <button
+        type="button"
         onClick={() => setOpen(!open)}
         className="
           bg-[#1A1A1A] border border-[#2A2A2A] hover:border-[#E8003D]
@@ -81,6 +82,7 @@ export default function TeamSwitcher() {
                 const isActive = team.id === activeTeam?.id;
                 return (
                   <button
+                    type="button"
                     key={team.id}
                     onClick={() => handleSwitch(team.id)}
                     disabled={isPending}

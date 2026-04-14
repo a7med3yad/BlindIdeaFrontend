@@ -71,15 +71,27 @@ export default function LandingPage() {
             <Logo size="sm" />
           </div>
           <div className="hidden md:flex items-center gap-6">
-            <a href="#features" className="text-[#AAAAAA] hover:text-white text-sm font-medium transition-colors no-underline">
+            <button
+              type="button"
+              onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}
+              className="text-[#AAAAAA] hover:text-white text-sm font-medium transition-colors bg-transparent border-none cursor-pointer p-0"
+            >
               Features
-            </a>
-            <a href="#how" className="text-[#AAAAAA] hover:text-white text-sm font-medium transition-colors no-underline">
+            </button>
+            <button
+              type="button"
+              onClick={() => document.getElementById('how')?.scrollIntoView({ behavior: 'smooth' })}
+              className="text-[#AAAAAA] hover:text-white text-sm font-medium transition-colors bg-transparent border-none cursor-pointer p-0"
+            >
               How it works
-            </a>
-            <a href="#pricing" className="text-[#AAAAAA] hover:text-white text-sm font-medium transition-colors no-underline">
+            </button>
+            <button
+              type="button"
+              onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
+              className="text-[#AAAAAA] hover:text-white text-sm font-medium transition-colors bg-transparent border-none cursor-pointer p-0"
+            >
               Pricing
-            </a>
+            </button>
           </div>
           <div className="flex items-center gap-3">
             <Link
@@ -197,18 +209,19 @@ export default function LandingPage() {
             >
               Get Started Free
             </Link>
-            <a
-              href="#how"
+            <button
+              type="button"
+              onClick={() => document.getElementById('how')?.scrollIntoView({ behavior: 'smooth' })}
               className="
                 h-14 px-10 rounded-xl font-semibold text-base
                 bg-transparent border border-[#2A2A2A]
                 hover:border-[#E8003D]/50 text-[#AAAAAA] hover:text-white
                 transition-all duration-200
-                inline-flex items-center justify-center
+                inline-flex items-center justify-center cursor-pointer
               "
             >
               See How It Works
-            </a>
+            </button>
           </motion.div>
         </motion.div>
 

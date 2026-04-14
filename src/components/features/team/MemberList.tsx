@@ -70,6 +70,7 @@ export default function MemberList({ members }: MemberListProps) {
             )}
             {isAdmin && member.email !== email && member.role !== 'Admin' && (
               <button
+                type="button"
                 onClick={() =>
                   removeMember({
                     memberId: member.id,

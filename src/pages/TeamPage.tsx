@@ -92,6 +92,7 @@ export default function TeamPage() {
                 const isActive = t.id === activeTeamId;
                 return (
                   <button
+                    type="button"
                     key={t.id}
                     onClick={() => handleSwitch(t.id)}
                     disabled={isSwitching}
@@ -144,6 +145,7 @@ export default function TeamPage() {
                       </code>
                     </div>
                     <button
+                      type="button"
                       onClick={async () => {
                         await navigator.clipboard.writeText(activeTeam.inviteCode);
                         toast.success('Invite code copied!');
@@ -154,6 +156,7 @@ export default function TeamPage() {
                       <Copy className="w-4 h-4" />
                     </button>
                     <button
+                      type="button"
                       onClick={async () => {
                         const text = `Join my BlindIdea team with code: ${activeTeam.inviteCode}`;
                         const navAny = navigator as unknown as { share?: (data: { text: string }) => Promise<void> };

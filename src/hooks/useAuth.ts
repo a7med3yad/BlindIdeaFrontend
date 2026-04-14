@@ -119,7 +119,20 @@ export const useForgotPassword = () => {
 
 export const useVerifyReset = () => {
   return useMutation({
-    mutationFn: (data: VerifyResetRequest) => authApi.verifyReset(data),
+    mutationFn: (data: { email: string; otp: string }) => authApi.verifyReset(data),
+    onSuccess: () => {
+      toast.success('Code verified!');
+    },
+    onError: (error: unknown) => {
+      toast.error(getResetPasswordError(error));
+    },
+  });
+};
+
+export const useChangeForgottenPassword = () => {
+  return useMutation({
+    mutationFn: (data: { email: string; newPassword: string; confirmPassword: string }) =>
+      authApi.changeForgottenPassword(data),
     onSuccess: () => {
       toast.success('Password reset successfully! You can now log in.');
     },

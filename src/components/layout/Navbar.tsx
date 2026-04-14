@@ -69,6 +69,7 @@ export default function Navbar() {
               {email}
             </span>
             <button
+              type="button"
               onClick={() => logout()}
               disabled={isPending}
               className="flex items-center gap-1.5 h-9 px-4 rounded-lg text-sm font-medium text-[#AAAAAA] hover:text-white hover:bg-white/5 transition-all cursor-pointer"
@@ -80,6 +81,7 @@ export default function Navbar() {
 
           {/* Mobile menu button */}
           <button
+            type="button"
             onClick={() => setMobileOpen(!mobileOpen)}
             className="md:hidden p-2 text-[#AAAAAA] hover:text-white cursor-pointer"
           >
@@ -126,6 +128,7 @@ export default function Navbar() {
                 );
               })}
               <button
+                type="button"
                 onClick={() => {
                   logout();
                   setMobileOpen(false);

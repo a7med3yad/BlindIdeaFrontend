@@ -1,4 +1,5 @@
-import { Link, Navigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, Navigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Logo from '../components/ui/Logo';
 import LoginForm from '../components/features/auth/LoginForm';
@@ -8,6 +9,16 @@ import { authApi } from '../api/auth.api';
 
 export default function LoginPage() {
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
+  const location = useLocation();
+  const [resetSuccess, setResetSuccess] = useState(false);
+
+  useEffect(() => {
+    if ((location.state as { resetSuccess?: boolean })?.resetSuccess) {
+      setResetSuccess(true);
+      // Clear the state so it doesn't persist on refresh
+      window.history.replaceState({}, document.title);
+    }
+  }, [location.state]);
 
   if (isAuthenticated) {
     return <Navigate to="/dashboard" replace />;
@@ -28,6 +39,17 @@ export default function LoginPage() {
           </div>
           <p className="text-sm text-[#555555]">Sign in to your account</p>
         </div>
+
+        {/* Password reset success banner */}
+        {resetSuccess && (
+          <div className="mb-4 p-3 bg-[#22C55E]/10 border border-[#22C55E]/30 rounded-xl flex items-center gap-3">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+              <polyline points="22 4 12 14.01 9 11.01" />
+            </svg>
+            <p className="text-sm text-[#22C55E]">Password reset successful! Sign in with your new password.</p>
+          </div>
+        )}
 
         {/* Card */}
         <div className="bg-[#0D0D0D] border border-[#2A2A2A] rounded-2xl p-8">

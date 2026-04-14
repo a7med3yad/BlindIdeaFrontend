@@ -23,10 +23,13 @@ export const authApi = {
     api.post<AuthResponse>('/Auth/login', data),
 
   forgotPassword: (email: string) =>
-    api.post('/Auth/forgot-password', { email }),
+    api.post(`/Auth/forgot-password?email=${encodeURIComponent(email)}`),
 
-  verifyReset: (data: VerifyResetRequest) =>
+  verifyReset: (data: { email: string; otp: string }) =>
     api.post('/Auth/verify-reset', data),
+
+  changeForgottenPassword: (data: { email: string; newPassword: string; confirmPassword: string }) =>
+    api.post('/Auth/change-forgotten-password', data),
 
   refreshToken: (data: RefreshTokenRequest) =>
     api.post<AuthResponse>('/Auth/refresh-token', data),

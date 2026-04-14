@@ -348,6 +348,7 @@ export default function DashboardPage() {
                     {activeTeam.inviteCode}
                   </code>
                   <button
+                    type="button"
                     onClick={() => {
                       navigator.clipboard.writeText(activeTeam.inviteCode);
                       toast.success('Invite code copied!');

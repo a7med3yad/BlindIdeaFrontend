@@ -80,6 +80,7 @@ export default function TeamCard({
           {team.inviteCode}
         </code>
         <button
+          type="button"
           onClick={copyCode}
           className="p-1.5 text-[#555555] hover:text-white rounded-lg hover:bg-white/5 transition-colors cursor-pointer"
           title="Copy invite code"
@@ -88,6 +89,7 @@ export default function TeamCard({
         </button>
         {team.isAdmin && (
           <button
+            type="button"
             onClick={() => regenerate(team.id)}
             disabled={isRegenerating}
             className="p-1.5 text-[#555555] hover:text-[#E8003D] rounded-lg hover:bg-white/5 transition-colors disabled:opacity-50 cursor-pointer"
@@ -102,6 +104,7 @@ export default function TeamCard({
       <div className="flex items-center gap-2 pt-1">
         {!isActive && onSwitch && (
           <button
+            type="button"
             onClick={() => onSwitch(team.id)}
             disabled={isSwitching}
             className="
@@ -116,6 +119,7 @@ export default function TeamCard({
         )}
         {!team.isAdmin && onLeave && (
           <button
+            type="button"
             onClick={() => onLeave(team.id)}
             className="
               flex items-center gap-1.5 h-8 px-3 rounded-lg text-xs font-semibold
@@ -129,6 +133,7 @@ export default function TeamCard({
         )}
         {team.isAdmin && onDelete && (
           <button
+            type="button"
             onClick={() => onDelete(team.id)}
             className="
               flex items-center gap-1.5 h-8 px-3 rounded-lg text-xs font-semibold

@@ -51,6 +51,7 @@ export default function IdeaCard({ idea, index = 0 }: IdeaCardProps) {
           </div>
           {idea.isOwner && (
             <button
+              type="button"
               onClick={() => deleteIdea(idea.id)}
               disabled={isDeleting}
               className="p-1.5 text-[#555555] hover:text-[#EF4444] rounded-lg hover:bg-[#EF4444]/10 transition-colors shrink-0 disabled:opacity-50 cursor-pointer"

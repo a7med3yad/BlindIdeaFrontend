@@ -42,6 +42,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <button
         ref={ref}
+        type={props.type ?? 'button'}
         disabled={disabled || isLoading}
         className={`
           inline-flex items-center justify-center gap-2 font-semibold
