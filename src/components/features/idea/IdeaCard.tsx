@@ -30,10 +30,10 @@ export default function IdeaCard({ idea, index = 0 }: IdeaCardProps) {
       transition={{ duration: 0.3, delay: index * 0.05 }}
       whileHover={{ scale: 1.02 }}
     >
-      <div className="bg-[#0D0D0D] border border-[#2A2A2A] rounded-2xl p-6 hover:border-[#E8003D]/30 hover:shadow-[0_0_40px_rgba(232,0,61,0.06)] transition-all duration-200 space-y-3">
+      <div className="bg-[#0D0D0D] border border-[#2A2A2A] rounded-2xl p-4 md:p-6 hover:border-[#E8003D]/30 hover:shadow-[0_0_40px_rgba(232,0,61,0.06)] transition-all duration-200 space-y-3 h-auto">
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0 flex-1">
-            <h3 className="text-base font-black text-white leading-tight truncate">
+            <h3 className="text-base font-black text-white leading-tight break-words">
               {idea.title}
             </h3>
             <div className="flex items-center gap-2 mt-2 flex-wrap">
@@ -62,7 +62,7 @@ export default function IdeaCard({ idea, index = 0 }: IdeaCardProps) {
           )}
         </div>
 
-        <p className="text-[#AAAAAA] text-sm leading-relaxed line-clamp-3">
+        <p className="text-[#AAAAAA] text-[13px] md:text-sm leading-[1.6] break-words whitespace-pre-wrap">
           {idea.content}
         </p>
 
