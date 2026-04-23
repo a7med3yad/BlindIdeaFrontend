@@ -10,7 +10,7 @@ import type {
   UserProfile,
 } from '../types/auth.types';
 
-const BACKEND_URL = import.meta.env.VITE_API_BASE_URL || 'https://blindidea.duckdns.org/api';
+const BACKEND_URL = import.meta.env.VITE_API_BASE_URL || 'http://theblindidea.runasp.net';
 
 export const authApi = {
   register: (data: RegisterRequest) =>

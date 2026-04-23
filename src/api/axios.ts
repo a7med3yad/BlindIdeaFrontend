@@ -3,7 +3,7 @@ import axios from 'axios';
 import { extractMessage, isSilent } from '../utils/errorMessages';
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'https://blindidea.duckdns.org/api',
+  baseURL: import.meta.env.VITE_API_URL || 'http://theblindidea.runasp.net',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -97,7 +97,7 @@ api.interceptors.response.use(
 
       try {
         const response = await axios.post(
-          `${import.meta.env.VITE_API_URL || 'https://blindidea.duckdns.org/api'}/Auth/refresh-token`,
+          `${import.meta.env.VITE_API_URL || 'http://theblindidea.runasp.net'}/Auth/refresh-token`,
           { refreshToken }
         );
 
